@@ -27,13 +27,26 @@ class ParkingBoyFacts {
     void should_fetch_car_by_parking_ticket_from_parking_boy() {
         //GIVEN
         ParkingLot parkingLot = new ParkingLot();
-        ParkingTicket parkingTicket= new ParkingTicket();
+        ParkingTicket parkingTicket;
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car= new Car();
 
         //WHEN
-        Car car= parkingBoy.fetch(parkingTicket);
+        parkingTicket= parkingBoy.park(car);
+        car= parkingBoy.fetch(parkingTicket);
 
         //THEN
         assertNotNull(car);
+    }
+
+    @Test
+    void should_park_multiple_cars_in_parking_lot() {
+        //GIVEN
+        //WHEN
+        //THEN
+    }
+
+    @Test
+    void should_fetch_car_from_parking_ticket() {
     }
 }

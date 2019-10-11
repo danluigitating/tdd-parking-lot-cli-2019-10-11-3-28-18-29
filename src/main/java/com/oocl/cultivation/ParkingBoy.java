@@ -10,13 +10,11 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        ParkingTicket parkingTicket= new ParkingTicket();
-        return parkingTicket;
+        return parkingLot.park(car);
     }
 
     public Car fetch(ParkingTicket ticket) {
-        Car car= new Car();
-        return car;
+        return parkingLot.fetchCar(ticket);
     }
 
     public String getLastErrorMessage() {
