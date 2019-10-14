@@ -40,13 +40,21 @@ class ParkingBoyFacts {
     }
 
     @Test
-    void should_park_multiple_cars_in_parking_lot() {
+    void should_return_multiple_parking_ticket_when_parking_boy_park_multiple_cars_in_parking_lot() {
         //GIVEN
+        Car car= new Car();
+        ParkingLot parkingLot= new ParkingLot();
+        ParkingBoy parkingBoy= new ParkingBoy(parkingLot);
+
         //WHEN
+        ParkingTicket parkingTicket1= parkingBoy.park(car);
+        ParkingTicket parkingTicket2= parkingBoy.park(car);
+
         //THEN
+        assertNotNull(parkingTicket1);
+        assertNotNull(parkingTicket2);
+        assertNotEquals(parkingTicket1, parkingTicket2);
     }
 
-    @Test
-    void should_fetch_car_from_parking_ticket() {
-    }
+    
 }
