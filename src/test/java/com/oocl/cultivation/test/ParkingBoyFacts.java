@@ -42,13 +42,16 @@ class ParkingBoyFacts {
     @Test
     void should_return_multiple_parking_ticket_when_parking_boy_park_multiple_cars_in_parking_lot() {
         //GIVEN
-        Car car= new Car();
+        Car car1= new Car();
+        Car car2= new Car();
         ParkingLot parkingLot= new ParkingLot();
         ParkingBoy parkingBoy= new ParkingBoy(parkingLot);
 
         //WHEN
-        ParkingTicket parkingTicket1= parkingBoy.park(car);
-        ParkingTicket parkingTicket2= parkingBoy.park(car);
+        ParkingTicket parkingTicket1= parkingBoy.park(car1);
+        car1= parkingBoy.fetch(parkingTicket1);
+        ParkingTicket parkingTicket2= parkingBoy.park(car2);
+        car2= parkingBoy.fetch(parkingTicket2);
 
         //THEN
         assertNotNull(parkingTicket1);
@@ -56,5 +59,33 @@ class ParkingBoyFacts {
         assertNotEquals(parkingTicket1, parkingTicket2);
     }
 
-    
+    @Test
+    void should_return_null_car_when_parking_boy_park_fetches_null_ticket() {
+        //GIVEN
+        ParkingLot parkingLot= new ParkingLot();
+        ParkingBoy parkingBoy= new ParkingBoy(parkingLot);
+
+        //WHEN
+        Car car = parkingBoy.fetch(null);
+
+        //THEN
+        assertNull(car);
+    }
+
+    @Test
+    void should_return_null_car_when_parking_boy_park_fetches_incorrect_ticket() {
+        //GIVEN
+        ParkingLot parkingLot= new ParkingLot();
+        ParkingBoy parkingBoy= new ParkingBoy(parkingLot);
+
+        //WHEN
+        ParkingTicket parkingTicket= parkingBoy.park(new Car());
+        Car car = parkingBoy.fetch(new ParkingTicket());
+
+        //THEN
+        assertNull(car);
+        assertNotNull(parkingTicket);
+    }
+
+
 }
