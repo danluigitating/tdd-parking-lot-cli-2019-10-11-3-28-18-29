@@ -103,5 +103,28 @@ class ParkingBoyFacts {
         assertNull(car2);
     }
 
+    @Test
+    void should_return_null_parking_ticket_when_parking_lot_capacity_is_reached() {
+        //GIVEN
+        ParkingLot parkingLot= new ParkingLot();
+        ParkingBoy parkingBoy= new ParkingBoy(parkingLot);
+
+        //WHEN
+        ParkingTicket parkingTicket = null;
+        for(int i=0; i<10; i++){
+            parkingTicket = parkingBoy.park(new Car());
+        }
+        ParkingTicket overloadParkingTicket = parkingBoy.park(new Car());
+
+        //THEN
+        assertNotNull(parkingTicket);
+        assertNull(overloadParkingTicket);
+    }
+
+
+
+
+
+
 
 }
